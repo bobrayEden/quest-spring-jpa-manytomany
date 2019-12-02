@@ -1,11 +1,15 @@
 package com.wildcodeschool.wildandwizard.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Course {
 
     @Id
@@ -13,26 +17,9 @@ public class Course {
     private Long id;
     private String name;
 
+    @ManyToMany(mappedBy = "courses")
+    private List<Wizard> wizards = new ArrayList<>();
+
     public Course() {
-    }
-
-    public Course(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
